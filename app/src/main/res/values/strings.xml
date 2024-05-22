@@ -4,4 +4,5 @@
     <string name="akujuga">#AkuJuga</string>
     <string name="login">Login</string>
     <string name="signup">Signup</string>
+    <string name="pass_view">password must be at least 8 characters</string>
 </resources>

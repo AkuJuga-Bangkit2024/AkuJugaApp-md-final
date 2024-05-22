@@ -7,8 +7,9 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
+import com.example.akujuga.R
 
-class MyEmailText : AppCompatEditText {
+class MyPassText : AppCompatEditText {
     constructor(context: Context) : super(context) {
         init()
     }
@@ -27,7 +28,7 @@ class MyEmailText : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        hint = "Email"
+        hint = "Password"
         textAlignment = View.TEXT_ALIGNMENT_VIEW_START
     }
 
@@ -38,12 +39,10 @@ class MyEmailText : AppCompatEditText {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                val emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}".toRegex()
-
-                if (emailPattern.matches(s)) {
-                    error = null
+                if (s.toString().length < 8) {
+                    setError(context.getString(R.string.pass_view), null)
                 } else {
-                    setError("Enter a valid email", null)
+                    error = null
                 }
             }
 
