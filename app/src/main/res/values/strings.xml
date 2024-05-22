@@ -5,4 +5,6 @@
     <string name="login">Login</string>
     <string name="signup">Signup</string>
     <string name="pass_view">password must be at least 8 characters</string>
+    <string name="name">Name</string>
+    <string name="name_error">Min 4 words</string>
 </resources>
