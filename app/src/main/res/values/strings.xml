@@ -7,4 +7,11 @@
     <string name="pass_view">password must be at least 8 characters</string>
     <string name="name">Name</string>
     <string name="name_error">Min 4 words</string>
+    <string name="title_home">Home</string>
+    <string name="title_module" />
+    <string name="title_profile">Profile</string>
+    <string name="logout">Keluar</string>
+    <string name="title_camera">Camera</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

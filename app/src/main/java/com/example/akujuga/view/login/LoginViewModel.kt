@@ -6,10 +6,10 @@ import com.example.akujuga.data.UserRepository
 import com.example.akujuga.data.pref.UserModel
 import kotlinx.coroutines.launch
 
-class LoginViewModel(private val repository: UserRepository): ViewModel() {
-    fun saveSession(userModel: UserModel) {
+class LoginViewModel(private val repository: UserRepository) : ViewModel() {
+    fun saveSession(user: UserModel) {
         viewModelScope.launch {
-            repository.saveSession(userModel)
+            repository.saveSession(user)
         }
     }
 }

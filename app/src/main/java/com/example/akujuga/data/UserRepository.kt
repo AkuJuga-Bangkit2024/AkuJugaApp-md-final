@@ -4,10 +4,12 @@ import com.example.akujuga.data.pref.UserModel
 import com.example.akujuga.data.pref.UserPreference
 import kotlinx.coroutines.flow.Flow
 
-class UserRepository private constructor(private val userPreference: UserPreference){
+class UserRepository private constructor(
+    private val userPreference: UserPreference
+) {
 
-    suspend fun saveSession(userModel: UserModel) {
-        userPreference.saveSession(userModel)
+    suspend fun saveSession(user: UserModel) {
+        userPreference.saveSession(user)
     }
 
     fun getSession(): Flow<UserModel> {
@@ -24,8 +26,8 @@ class UserRepository private constructor(private val userPreference: UserPrefere
         fun getInstance(
             userPreference: UserPreference
         ): UserRepository =
-            instance?: synchronized(this) {
-                instance?: UserRepository(userPreference)
+            instance ?: synchronized(this) {
+                instance ?: UserRepository(userPreference)
             }.also { instance = it }
     }
 }
