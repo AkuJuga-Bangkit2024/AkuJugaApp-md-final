@@ -3,13 +3,20 @@ package com.example.akujuga.view.login
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.akujuga.R
@@ -17,6 +24,7 @@ import com.example.akujuga.data.pref.UserModel
 import com.example.akujuga.databinding.ActivityLoginBinding
 import com.example.akujuga.view.ViewModelFactory
 import com.example.akujuga.view.main.MainActivity
+import com.example.akujuga.view.signup.SignupActivity
 
 class LoginActivity : AppCompatActivity() {
     private val viewModel by viewModels<LoginViewModel> {
@@ -33,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
         setupAction()
     }
 
+
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -44,6 +53,28 @@ class LoginActivity : AppCompatActivity() {
             )
         }
         supportActionBar?.hide()
+
+        val signupTextView = binding.signupTextView
+        val text = "Don’t have an account? Sign up"
+
+        val spannableString = SpannableString(text)
+
+        val clickableSpan = object : ClickableSpan() {
+            override fun onClick(widget: View) {
+                val intent = Intent(this@LoginActivity, SignupActivity::class.java)
+                startActivity(intent)
+            }
+
+            override fun updateDrawState(ds: TextPaint) {
+                super.updateDrawState(ds)
+                ds.isUnderlineText = false
+                ds.color = ContextCompat.getColor(this@LoginActivity, R.color.green)
+            }
+        }
+
+        spannableString.setSpan(clickableSpan, 23, 30, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        signupTextView.text = spannableString
+        signupTextView.movementMethod = LinkMovementMethod.getInstance()
     }
 
     private fun setupAction() {
