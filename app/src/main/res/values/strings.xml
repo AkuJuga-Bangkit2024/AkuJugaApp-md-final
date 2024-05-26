@@ -16,4 +16,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_up">Sign Up</string>
     <string name="texAccount">Don’t have an account? Sign up</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="result">Result</string>
+    <string name="analyze">Analyze</string>
 </resources>
