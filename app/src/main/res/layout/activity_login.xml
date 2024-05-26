@@ -109,4 +109,18 @@
         app:layout_constraintGuide_percent="0.1"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/signupTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/texAccount"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="14sp"
+        android:alpha="1"
+        tools:alpha="100" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
