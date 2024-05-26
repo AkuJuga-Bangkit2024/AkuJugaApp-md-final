@@ -1,10 +1,12 @@
 package com.example.akujuga.customview
 
 import android.content.Context
+import android.graphics.Canvas
 import android.text.Editable
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.view.View
 import androidx.appcompat.widget.AppCompatEditText
 import com.example.akujuga.R
 
@@ -18,30 +20,39 @@ class MyUsernameText : AppCompatEditText {
         init()
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttrs: Int) : super(
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
         context,
         attrs,
-        defStyleAttrs
+        defStyleAttr
     ) {
         init()
     }
 
+    override fun onDraw(canvas: Canvas) {
+        super.onDraw(canvas)
+        hint = "Enter your name"
+        textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+    }
+
     private fun init() {
-        inputType = InputType.TYPE_TEXT_VARIATION_PERSON_NAME
-        compoundDrawablePadding = 16
-        setHint(R.string.name)
-
         addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int)  { }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                error = if(!s.isNullOrEmpty() && s.length < 4)
-                    context.getString(R.string.name_error)
-                else null
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
+                // Do nothing.
             }
 
-            override fun afterTextChanged(s: Editable?) { }
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                val namePattern = "[a-zA-Z]+".toRegex()
 
+                if (namePattern.matches(s)) {
+                    error = null
+                } else {
+                    setError("Enter a valid name", null)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                // Do nothing.
+            }
         })
     }
 }
