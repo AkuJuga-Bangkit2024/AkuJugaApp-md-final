@@ -7,6 +7,7 @@ import com.example.akujuga.data.UserRepository
 import com.example.akujuga.di.Injection
 import com.example.akujuga.view.login.LoginViewModel
 import com.example.akujuga.view.main.MainViewModel
+import com.example.akujuga.view.profile.ProfileViewModel
 
 class ViewModelFactory(private val repository: UserRepository): ViewModelProvider.NewInstanceFactory() {
 
@@ -18,6 +19,9 @@ class ViewModelFactory(private val repository: UserRepository): ViewModelProvide
             }
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

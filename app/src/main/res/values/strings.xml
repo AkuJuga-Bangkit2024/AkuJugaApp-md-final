@@ -10,14 +10,19 @@
     <string name="title_home">Home</string>
     <string name="title_module" />
     <string name="title_profile">Profile</string>
-    <string name="logout">Keluar</string>
+    <string name="logout">Logout</string>
     <string name="title_camera">Camera</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_up">Sign Up</string>
     <string name="texAccount">Don’t have an account? Sign up</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="result">Result</string>
     <string name="analyze">Analyze</string>
+    <string name="email">Email</string>
+    <string name="setting">Setting</string>
+    <string name="account">Account</string>
+    <string name="camera_detection">Camera Detection</string>
+    <string name="image">Image</string>
+    <string name="account_information">Account Information</string>
+    <string name="password">Password</string>
 </resources>
