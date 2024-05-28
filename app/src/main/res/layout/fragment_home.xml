@@ -1,9 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.home.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvTittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/appName"
+            android:textColor="@color/green"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <ImageView
+            android:id="@+id/ivHome"
+            android:layout_width="347dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/bghome"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTittle" />
+
+        <TextView
+            android:id="@+id/tvSubTittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/subtittle"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivHome" />
+
+        <LinearLayout
+            android:id="@+id/llClick"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSubTittle">
+
+            <ImageView
+                android:id="@+id/ivKamus"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
+                android:src="@drawable/framefour" />
+
+            <ImageView
+                android:id="@+id/ivAngka"
+                android:layout_width="155dp"
+                android:layout_height="155dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/frameone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llClickTwo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-15dp"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llClick">
+
+            <ImageView
+                android:layout_width="155dp"
+                android:layout_height="155dp"
+                android:src="@drawable/frametwo" />
+
+            <ImageView
+                android:layout_width="155dp"
+                android:layout_height="155dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/framethree" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>

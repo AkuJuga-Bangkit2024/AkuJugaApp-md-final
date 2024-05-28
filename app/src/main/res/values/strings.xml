@@ -25,4 +25,6 @@
     <string name="image">Image</string>
     <string name="account_information">Account Information</string>
     <string name="password">Password</string>
+    <string name="appName">#AkuJuga</string>
+    <string name="subtittle">Let\'s Explore!</string>
 </resources>

@@ -13,6 +13,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.example.akujuga.view.camera.CameraActivity.Companion.CAMERAX_RESULT
@@ -95,6 +96,12 @@ class CameraFragment : Fragment() {
         currentImageUri?.let {
             binding.previewImageView.setImageURI(it)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Hide the action bar
+        (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
     companion object {

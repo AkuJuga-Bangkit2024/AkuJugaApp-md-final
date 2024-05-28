@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.example.akujuga.databinding.FragmentProfileBinding
 import com.example.akujuga.view.ViewModelFactory
@@ -40,4 +41,11 @@ class ProfileFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    override fun onResume() {
+        super.onResume()
+        // Hide the action bar
+        (activity as AppCompatActivity).supportActionBar?.hide()
+    }
+
 }
