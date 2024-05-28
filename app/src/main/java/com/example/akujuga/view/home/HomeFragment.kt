@@ -1,12 +1,18 @@
 package com.example.akujuga.view.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.akujuga.R
+import com.example.akujuga.view.feature.AngkaActivity
+import com.example.akujuga.view.feature.KamusActivity
+import com.example.akujuga.view.feature.KataSifatActivity
+import com.example.akujuga.view.feature.SapaanActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,6 +35,7 @@ class HomeFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onCreateView(
@@ -37,6 +44,28 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        view.findViewById<ImageView>(R.id.ivKamus).setOnClickListener {
+            val intent = Intent(activity, KamusActivity::class.java)
+            startActivity(intent)
+        }
+
+        view.findViewById<ImageView>(R.id.ivAngka).setOnClickListener {
+            val intent = Intent(activity, AngkaActivity::class.java)
+            startActivity(intent)
+        }
+
+        view.findViewById<ImageView>(R.id.ivKataSifat).setOnClickListener {
+            val intent = Intent(activity, KataSifatActivity::class.java)
+            startActivity(intent)
+        }
+
+        view.findViewById<ImageView>(R.id.ivSapaan).setOnClickListener {
+            val intent = Intent(activity, SapaanActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onResume() {

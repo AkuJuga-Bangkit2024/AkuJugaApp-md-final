@@ -27,4 +27,8 @@
     <string name="password">Password</string>
     <string name="appName">#AkuJuga</string>
     <string name="subtittle">Let\'s Explore!</string>
+    <string name="desc_ivKamus">Deskripsi Gambar Kamus</string>
+    <string name="desc_ivAngka">Deskripsi Gambar Angka</string>
+    <string name="desc_ivKataSifat">Deskripsi Gambar Kata Sifat</string>
+    <string name="desc_ivSapaan">Deskripsi Gambar Sapaan</string>
 </resources>
