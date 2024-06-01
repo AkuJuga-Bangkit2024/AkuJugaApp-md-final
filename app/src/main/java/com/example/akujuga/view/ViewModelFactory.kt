@@ -7,7 +7,7 @@ import com.example.akujuga.data.UserRepository
 import com.example.akujuga.di.Injection
 import com.example.akujuga.view.login.LoginViewModel
 import com.example.akujuga.view.main.MainViewModel
-import com.example.akujuga.view.profile.ProfileViewModel
+import com.example.akujuga.view.fragment.profile.ProfileViewModel
 
 class ViewModelFactory(private val repository: UserRepository): ViewModelProvider.NewInstanceFactory() {
 

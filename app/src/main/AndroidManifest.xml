@@ -35,7 +35,7 @@
             android:name=".view.account.AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".view.camera.CameraActivity"
+            android:name=".view.fragment.camera.CameraActivity"
             android:exported="false" />
         <activity
             android:name=".view.signup.SignupActivity"

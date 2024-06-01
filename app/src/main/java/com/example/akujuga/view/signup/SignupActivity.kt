@@ -1,5 +1,7 @@
 package com.example.akujuga.view.signup
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +27,7 @@ class SignupActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupView()
+        setupAnimation()
     }
 
     @Suppress("DEPRECATION")
@@ -60,5 +63,21 @@ class SignupActivity : AppCompatActivity() {
         spannableString.setSpan(clickableSpan, 22, 27, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
         signupTextView.text = spannableString
         signupTextView.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+    private fun setupAnimation() {
+
+        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(150)
+        val username = ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(150)
+        val email = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(150)
+        val pass = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(150)
+        val login = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(150)
+        val loginText = ObjectAnimator.ofFloat(binding.loginTextView, View.ALPHA, 1f).setDuration(150)
+
+
+        AnimatorSet().apply {
+            playSequentially(title, username, email, pass, login, loginText)
+            startDelay = 100
+        }.start()
     }
 }

@@ -1,5 +1,7 @@
 package com.example.akujuga.view.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -39,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
+        setupAnimation()
     }
 
 
@@ -95,4 +98,20 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun setupAnimation() {
+
+        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(150)
+        val email = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(150)
+        val pass = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(150)
+        val login = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(150)
+        val signupText = ObjectAnimator.ofFloat(binding.signupTextView, View.ALPHA, 1f).setDuration(150)
+
+
+        AnimatorSet().apply {
+            playSequentially(title, email, pass, login, signupText)
+            startDelay = 100
+        }.start()
+    }
+
 }
