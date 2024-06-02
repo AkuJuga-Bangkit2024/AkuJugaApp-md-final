@@ -45,17 +45,8 @@ class HomeFragment : Fragment() {
             val intent = Intent(requireActivity(), SapaanActivity::class.java)
             startActivity(intent)
         }
-
-        setupAnimation()
     }
 
-    private fun setupAnimation() {
-        ObjectAnimator.ofFloat(binding.ivHome, View.TRANSLATION_X, -15f, 15f).apply {
-            duration = 6000
-            repeatCount = ObjectAnimator.INFINITE
-            repeatMode = ObjectAnimator.REVERSE
-        }.start()
-    }
 
     override fun onResume() {
         super.onResume()

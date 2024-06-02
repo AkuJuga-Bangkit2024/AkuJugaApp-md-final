@@ -11,12 +11,12 @@
     <string name="title_module" />
     <string name="title_profile">Profile</string>
     <string name="logout">Logout</string>
-    <string name="title_camera">Camera</string>
+    <string name="title_camera">Detection</string>
     <string name="sign_up">Sign Up</string>
     <string name="texAccount">Don’t have an account? Sign up</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
-    <string name="result">Result</string>
+    <string name="result">Result:</string>
     <string name="analyze">Analyze</string>
     <string name="email">Email</string>
     <string name="setting">Setting</string>
@@ -31,4 +31,6 @@
     <string name="desc_ivAngka">Deskripsi Gambar Angka</string>
     <string name="desc_ivKataSifat">Deskripsi Gambar Kata Sifat</string>
     <string name="desc_ivSapaan">Deskripsi Gambar Sapaan</string>
+    <string name="camera_button">camera button</string>
+    <string name="gallery_button">gallery button</string>
 </resources>
