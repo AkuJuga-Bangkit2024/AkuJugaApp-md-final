@@ -20,13 +20,10 @@
         android:theme="@style/Theme.AkuJuga"
         tools:targetApi="31">
         <activity
-            android:name=".view.feature.SapaanActivity"
+            android:name=".view.feature.AlphabetActivity"
             android:exported="false" />
         <activity
-            android:name=".view.feature.KataSifatActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.feature.AngkaActivity"
+            android:name=".view.feature.NumberActivity"
             android:exported="false" />
         <activity
             android:name=".view.feature.KamusActivity"

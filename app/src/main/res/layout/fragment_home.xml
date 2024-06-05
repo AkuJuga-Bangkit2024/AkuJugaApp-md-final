@@ -26,7 +26,7 @@
 
         <ImageView
             android:id="@+id/ivHome"
-            android:layout_width="347dp"
+            android:layout_width="340dp"
             android:layout_height="180dp"
             android:layout_marginTop="40dp"
             android:scaleType="fitStart"
@@ -40,7 +40,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:text="@string/subtittle"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -49,66 +48,34 @@
 
         <LinearLayout
             android:id="@+id/llClick"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="2dp"
+            android:orientation="vertical"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvSubTittle">
 
             <ImageView
+                android:id="@+id/ivAlphabet"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:src="@drawable/imageone" />
+
+            <ImageView
+                android:id="@+id/ivNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:src="@drawable/imagethree" />
+
+            <ImageView
                 android:id="@+id/ivKamus"
-                android:layout_width="155dp"
-                android:layout_height="155dp"
-                android:clickable="true"
-                android:contentDescription="@string/desc_ivKamus"
-                android:focusable="true"
-                android:src="@drawable/framefour" />
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:src="@drawable/imagetwo" />
 
-            <ImageView
-                android:id="@+id/ivAngka"
-                android:layout_width="155dp"
-                android:layout_height="155dp"
-                android:layout_marginStart="20dp"
-                android:clickable="true"
-                android:contentDescription="@string/desc_ivAngka"
-                android:focusable="true"
-                android:src="@drawable/frameone" />
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llClickTwo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="-15dp"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/llClick">
-
-            <ImageView
-                android:id="@+id/ivKataSifat"
-                android:layout_width="155dp"
-                android:layout_height="155dp"
-                android:clickable="true"
-                android:contentDescription="@string/desc_ivKataSifat"
-                android:focusable="true"
-                android:src="@drawable/frametwo" />
-
-            <ImageView
-                android:id="@+id/ivSapaan"
-                android:layout_width="155dp"
-                android:layout_height="155dp"
-                android:layout_marginStart="20dp"
-                android:clickable="true"
-                android:contentDescription="@string/desc_ivSapaan"
-                android:focusable="true"
-                android:src="@drawable/framethree" />
-        </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
