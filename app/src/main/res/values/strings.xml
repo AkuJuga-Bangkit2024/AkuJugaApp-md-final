@@ -33,4 +33,8 @@
     <string name="desc_ivSapaan">Deskripsi Gambar Sapaan</string>
     <string name="camera_button">camera button</string>
     <string name="gallery_button">gallery button</string>
+    <string name="description">Description</string>
+    <string name="alphabet">Alphabet</string>
+    <string name="Kamus">Kamus</string>
+    <string name="number">Number</string>
 </resources>
