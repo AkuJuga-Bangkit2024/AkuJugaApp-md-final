@@ -12,16 +12,25 @@ import com.example.akujuga.databinding.FragmentCameraBinding
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
+import android.util.Log
+import android.view.WindowInsets
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
-import com.example.akujuga.view.fragment.camera.CameraActivity.Companion.CAMERAX_RESULT
+
 
 class CameraFragment : Fragment() {
     private var _binding: FragmentCameraBinding? = null
+
+    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+    private var imageCapture: ImageCapture? = null
     private val binding get() = _binding!!
-    private var currentImageUri: Uri? = null
 
     private val requestPermissionLauncher =
         registerForActivityResult(
@@ -46,15 +55,11 @@ class CameraFragment : Fragment() {
     ): View {
         _binding = FragmentCameraBinding.inflate(inflater, container, false)
 
-        binding.galleryButton.setOnClickListener {
-            startGallery()
-        }
-        binding.cameraButton.setOnClickListener {
-            startCameraX()
-        }
-
-        binding.analyzeButton.setOnClickListener {
-            startAnalyze()
+        binding.switchCamera.setOnClickListener {
+            cameraSelector =
+                if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
+                else CameraSelector.DEFAULT_BACK_CAMERA
+            startCamera()
         }
 
         if (!allPermissionsGranted()) {
@@ -64,43 +69,56 @@ class CameraFragment : Fragment() {
         return binding.root
     }
 
-    private fun startAnalyze() {
-        TODO("Not yet implemented")
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireActivity())
+
+        cameraProviderFuture.addListener({
+            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+            val preview = Preview.Builder()
+                .build()
+                .also {
+                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+                }
+
+            imageCapture = ImageCapture.Builder().build()
+
+            try {
+                cameraProvider.unbindAll()
+                cameraProvider.bindToLifecycle(
+                    this,
+                    cameraSelector,
+                    preview,
+                    imageCapture
+                )
+
+            } catch (exc: Exception) {
+                Toast.makeText(
+                    requireContext(),
+                    "Gagal memunculkan kamera.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.e("CameraFragemnt", "startCamera: ${exc.message}")
+            }
+        }, ContextCompat.getMainExecutor(requireContext()))
     }
 
-    private fun startGallery() {
-        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
-    }
-    private val launcherGallery = registerForActivityResult(
-        ActivityResultContracts.PickVisualMedia()
-    ) { uri: Uri? ->
-        currentImageUri = uri
-        showImage()
-    }
-
-    private fun startCameraX() {
-        val intent = Intent(requireActivity(), CameraActivity::class.java)
-        launcherIntentCameraX.launch(intent)
-    }
-
-    private val launcherIntentCameraX = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) {
-        if (it.resultCode == CAMERAX_RESULT) {
-            currentImageUri = it.data?.getStringExtra(CameraActivity.EXTRA_CAMERAX_IMAGE)?.toUri()
-            showImage()
-        }
-    }
-
-    private fun showImage() {
-        currentImageUri?.let {
-            binding.previewImageView.setImageURI(it)
+    private fun hideSystemUI() {
+        @Suppress("DEPRECATION")
+        val window = activity?.window
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window?.insetsController?.hide(WindowInsets.Type.statusBars())
+        } else {
+            window?.setFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+            )
         }
     }
 
     override fun onResume() {
         super.onResume()
-        // Hide the action bar
+        hideSystemUI()
+        startCamera()
         (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
