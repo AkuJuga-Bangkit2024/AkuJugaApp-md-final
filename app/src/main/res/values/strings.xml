@@ -37,4 +37,5 @@
     <string name="alphabet">Alphabet</string>
     <string name="Kamus">Kamus</string>
     <string name="number">Number</string>
+    <string name="searchbar_hint">Pencarian</string>
 </resources>
