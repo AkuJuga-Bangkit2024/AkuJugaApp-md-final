@@ -38,4 +38,8 @@
     <string name="Kamus">Kamus</string>
     <string name="number">Number</string>
     <string name="searchbar_hint">Pencarian</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
 </resources>

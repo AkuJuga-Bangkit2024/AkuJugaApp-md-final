@@ -20,6 +20,15 @@
         android:theme="@style/Theme.AkuJuga"
         tools:targetApi="31">
         <activity
+            android:name=".splash.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".view.feature.AlphabetActivity"
             android:exported="false" />
         <activity
@@ -32,7 +41,7 @@
             android:name=".view.account.AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".view.fragment.camera.CameraActivity"
+            android:name=".view.fragment.camera.CameraFragment"
             android:exported="false" />
         <activity
             android:name=".view.signup.SignupActivity"
@@ -45,13 +54,13 @@
             android:exported="false" />
         <activity
             android:name=".view.main.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true"/>
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
     </application>
 
 </manifest>
