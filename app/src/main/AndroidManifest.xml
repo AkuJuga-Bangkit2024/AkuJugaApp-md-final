@@ -41,9 +41,6 @@
             android:name=".view.account.AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".view.fragment.camera.CameraFragment"
-            android:exported="false" />
-        <activity
             android:name=".view.signup.SignupActivity"
             android:exported="false" />
         <activity
@@ -54,13 +51,7 @@
             android:exported="false" />
         <activity
             android:name=".view.main.MainActivity"
-            android:exported="true"/>
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+            android:exported="false"/>
     </application>
 
 </manifest>
