@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/navigation_guest_home"
+        android:title="@string/title_home"
+        android:icon="@drawable/baseline_home_24"/>
+
+    <item
+        android:id="@+id/navigation_guest_camera"
+        android:icon="@drawable/baseline_camera_24"
+        android:title="@string/title_camera" />
+
+    <item
+        android:id="@+id/navigation_guest_profile"
+        android:icon="@drawable/baseline_account_circle"
+        android:title="@string/title_guest" />
+</menu>

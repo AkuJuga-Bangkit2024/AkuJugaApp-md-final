@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-parcelize")
+    alias(libs.plugins.googleGmsGoogleServices)
 }
 
 android {
@@ -55,6 +56,8 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.material.v1100)
     implementation (libs.glide)
+    implementation(libs.firebase.auth)
+    implementation(libs.googleid)
     annotationProcessor (libs.compiler)
 
 

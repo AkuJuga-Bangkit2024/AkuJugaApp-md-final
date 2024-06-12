@@ -20,6 +20,9 @@
         android:theme="@style/Theme.AkuJuga"
         tools:targetApi="31">
         <activity
+            android:name=".view.guest.GuestActivity"
+            android:exported="false" />
+        <activity
             android:name=".splash.SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -38,20 +41,11 @@
             android:name=".view.feature.KamusActivity"
             android:exported="false" />
         <activity
-            android:name=".view.account.AccountActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.signup.SignupActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".view.welcome.WelcomeActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.main.MainActivity"
-            android:exported="false"/>
+            android:exported="true" />
     </application>
 
 </manifest>
