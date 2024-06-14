@@ -20,8 +20,6 @@ class SplashActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-
-
         Handler().postDelayed({
             startActivity(Intent(this, MainActivity::class.java))
             finish()
