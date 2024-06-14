@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.akujuga.databinding.FragmentProfileBinding
 import com.example.akujuga.view.ViewModelFactory
@@ -21,7 +22,6 @@ class ProfileFragment : Fragment() {
     }
 
     private var _binding : FragmentProfileBinding? = null
-    private lateinit var auth: FirebaseAuth
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -30,20 +30,26 @@ class ProfileFragment : Fragment() {
     ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        auth = FirebaseAuth.getInstance()
+        setupUser()
+        setupAction()
 
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            setupProfile(currentUser)
-        }
+        return binding.root
+    }
 
+    private fun setupAction() {
         binding.logout.setOnClickListener {
-            auth.signOut()
+            viewModel.logout()
             startActivity(Intent(requireActivity(), LoginActivity::class.java))
             requireActivity().finish()
         }
+    }
 
-        return binding.root
+    private fun setupUser() {
+        viewModel.getCurrentUser().observe(viewLifecycleOwner) { user ->
+            if (user != null) {
+                setupProfile(user)
+            }
+        }
     }
 
     private fun setupProfile(guestUser: FirebaseUser) {

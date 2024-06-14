@@ -2,32 +2,28 @@ package com.example.akujuga.data
 
 import com.example.akujuga.data.pref.UserModel
 import com.example.akujuga.data.pref.UserPreference
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 
 class UserRepository private constructor(
-    private val userPreference: UserPreference
+    private val auth: FirebaseAuth
 ) {
 
-    suspend fun saveSession(user: UserModel) {
-        userPreference.saveSession(user)
+    fun getCurrentUser(): FirebaseUser? {
+        return auth.currentUser
     }
-
-    fun getSession(): Flow<UserModel> {
-        return userPreference.getSession()
-    }
-
-    suspend fun logout() {
-        userPreference.logout()
+   fun logout() {
+        auth.signOut()
     }
 
     companion object {
         @Volatile
         private var instance: UserRepository? = null
-        fun getInstance(
-            userPreference: UserPreference
+        fun getInstance(auth: FirebaseAuth
         ): UserRepository =
             instance ?: synchronized(this) {
-                instance ?: UserRepository(userPreference)
+                instance ?: UserRepository(auth)
             }.also { instance = it }
     }
 }

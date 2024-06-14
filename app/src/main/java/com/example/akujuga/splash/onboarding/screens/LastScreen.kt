@@ -19,14 +19,14 @@ class LastScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_last_screen, container, false)
-
-        val textViewGetStarted = view.findViewById<TextView>(R.id.tvGetStarted)
-
-        textViewGetStarted.setOnClickListener {
-            findNavController().navigate(R.id.action_viewPagerFragment_to_homeFragment)
-            onBoardingFinished()
-        }
+//        val view = inflater.inflate(R.layout.fragment_last_screen, container, false)
+//
+//        val textViewGetStarted = view.findViewById<TextView>(R.id.tvGetStarted)
+//
+//        textViewGetStarted.setOnClickListener {
+//            findNavController().navigate(R.id.action_viewPagerFragment_to_homeFragment)
+//            onBoardingFinished()
+//        }
         return view
     }
 

@@ -6,14 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.akujuga.R
 import com.example.akujuga.databinding.FragmentGuestProfileBinding
+import com.example.akujuga.view.ViewModelFactory
 import com.example.akujuga.view.login.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class GuestProfileFragment : Fragment() {
-
-    private lateinit var auth: FirebaseAuth
+    private val viewModel by viewModels<GuestProfileViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
     private var _binding: FragmentGuestProfileBinding? = null
     private val binding get() = _binding!!
 
@@ -24,16 +27,19 @@ class GuestProfileFragment : Fragment() {
     ): View {
         _binding = FragmentGuestProfileBinding.inflate(inflater, container, false)
 
-        auth = FirebaseAuth.getInstance()
 
-        binding.login.setOnClickListener {
-            auth.signOut()
-            startActivity(Intent(requireActivity(), LoginActivity::class.java))
-            requireActivity().finish()
-        }
+        setupAction()
 
         return binding.root
 
+    }
+
+    private fun  setupAction() {
+        binding.login.setOnClickListener {
+            viewModel.getCurrentUser()
+            startActivity(Intent(requireActivity(), LoginActivity::class.java))
+            requireActivity().finish()
+        }
     }
 
     override fun onDestroyView() {

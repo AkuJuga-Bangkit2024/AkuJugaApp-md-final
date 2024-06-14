@@ -7,6 +7,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -22,30 +23,34 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
+    private val viewModel by viewModels<MainViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var auth: FirebaseAuth
+//    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        auth = Firebase.auth
-        val firebaseUser = auth.currentUser
-
-        if (firebaseUser == null) {
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        } else if (firebaseUser.isAnonymous) {
-            startActivity(Intent(this, GuestActivity::class.java))
-            finish()
-        }
-
-//        setupView()
+        setupUser()
+        setupView()
         setupBar()
     }
+
+    private fun setupUser() {
+        viewModel.getCurrentUser().observe(this, Observer { user ->
+            if (user == null) {
+                // Redirect to LoginActivity if the user is not authenticated
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
+    }
+
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -57,17 +62,6 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
-
-//    override fun onBackPressed() {
-//        val navController = findNavController(R.id.nav_host_fragment)
-//        if (!navController.popBackStack()) {
-//            // Jika tidak ada fragmen lagi dalam back stack
-//            super.onBackPressed()
-//            finishAffinity() // Keluar dari aplikasi
-//        }
-//    }
-
-
 
     private fun setupBar() {
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
