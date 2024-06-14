@@ -41,14 +41,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUser() {
-        viewModel.getCurrentUser().observe(this, Observer { user ->
+        viewModel.getCurrentUser().observe(this) { user ->
             if (user == null) {
-                // Redirect to LoginActivity if the user is not authenticated
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
+            } else if (user.isAnonymous) {
+                startActivity(Intent(this, GuestActivity::class.java))
+                finish()
             }
-        })
+        }
     }
 
     private fun setupView() {

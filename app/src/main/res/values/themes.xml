@@ -3,6 +3,13 @@
     <style name="Base.Theme.AkuJuga" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/gray_dark</item>
+        <item name="colorPrimaryVariant">@color/dark_purple</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:colorBackground">@color/light_green</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Theme.AkuJuga" parent="Base.Theme.AkuJuga" />
