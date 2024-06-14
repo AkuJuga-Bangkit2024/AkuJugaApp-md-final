@@ -10,20 +10,9 @@ import kotlinx.coroutines.launch
 
 class GuestProfileViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val _currentUser = MutableLiveData<FirebaseUser?>()
-
-    init {
-        _currentUser.value = repository.getCurrentUser()
-    }
-
-    fun getCurrentUser(): LiveData<FirebaseUser?> {
-        return _currentUser
-    }
-
     fun logout() {
         viewModelScope.launch {
             repository.logout()
-            _currentUser.postValue(null) // Update the current user to null on logout
         }
     }
 }

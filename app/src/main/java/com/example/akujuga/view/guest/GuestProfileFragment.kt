@@ -36,7 +36,7 @@ class GuestProfileFragment : Fragment() {
 
     private fun  setupAction() {
         binding.login.setOnClickListener {
-            viewModel.getCurrentUser()
+            viewModel.logout()
             startActivity(Intent(requireActivity(), LoginActivity::class.java))
             requireActivity().finish()
         }
