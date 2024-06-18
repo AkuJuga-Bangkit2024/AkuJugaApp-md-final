@@ -7,18 +7,32 @@ import androidx.lifecycle.viewModelScope
 import com.example.akujuga.data.UserRepository
 import com.example.akujuga.data.remote.response.AlphabetResponse
 import com.example.akujuga.data.remote.response.NumberResponse
+import com.example.akujuga.data.remote.response.PredictAlphabetResponse
 import kotlinx.coroutines.launch
+import java.io.File
 
 class AlphabetViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _alphaberResponse = MutableLiveData<AlphabetResponse>()
     val alphabetResponse: LiveData<AlphabetResponse> = _alphaberResponse
 
+    private val _predictingImageResponse = MutableLiveData<PredictAlphabetResponse>()
+    val predictingImageResponse: LiveData<PredictAlphabetResponse> = _predictingImageResponse
+
     fun getAlphabet() {
         viewModelScope.launch {
             val response = repository.getAlphabet()
             response?.let {
                 _alphaberResponse.value = it
+            }
+        }
+    }
+
+    fun classifyImageAlphabet(imageFile: File) {
+        viewModelScope.launch {
+            val response = repository.classifyImageAlphabet(imageFile)
+            response?.let {
+                _predictingImageResponse.value = it
             }
         }
     }

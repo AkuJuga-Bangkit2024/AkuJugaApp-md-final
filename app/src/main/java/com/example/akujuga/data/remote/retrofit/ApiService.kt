@@ -3,9 +3,13 @@ package com.example.akujuga.data.remote.retrofit
 import com.example.akujuga.data.remote.response.AlphabetResponse
 import com.example.akujuga.data.remote.response.DictionaryResponse
 import com.example.akujuga.data.remote.response.NumberResponse
-import retrofit2.http.Field
+import com.example.akujuga.data.remote.response.PredictAlphabetResponse
+import com.example.akujuga.data.remote.response.PredictNumberResponse
+import okhttp3.MultipartBody
 import retrofit2.http.GET
-import retrofit2.http.Header
+import retrofit2.http.Multipart
+import retrofit2.http.POST
+import retrofit2.http.Part
 
 interface ApiService{
 
@@ -17,4 +21,16 @@ interface ApiService{
 
     @GET("/learn/dictionary")
     suspend fun getDictionary(): DictionaryResponse
+
+    @Multipart
+    @POST("/classifyImageAlphabet")
+    suspend fun classifyImageAlphabet(
+        @Part file: MultipartBody.Part
+    ): PredictAlphabetResponse
+
+    @Multipart
+    @POST("/classifyImageAlphabet")
+    suspend fun classifyImageNumber(
+        @Part file: MultipartBody.Part
+    ): PredictNumberResponse
 }

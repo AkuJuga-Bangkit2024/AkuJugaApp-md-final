@@ -13,6 +13,8 @@ import com.example.akujuga.R
 import com.example.akujuga.data.remote.response.AlphabetResponse
 import com.example.akujuga.data.remote.response.DictionaryResponse
 import com.example.akujuga.data.remote.response.NumberResponse
+import com.example.akujuga.data.remote.response.PredictAlphabetResponse
+import com.example.akujuga.data.remote.response.PredictNumberResponse
 import com.example.akujuga.data.remote.retrofit.ApiService
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
@@ -24,6 +26,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
 class UserRepository private constructor(
     private val auth: FirebaseAuth,
@@ -48,6 +54,28 @@ class UserRepository private constructor(
             }
         } catch (e: Exception) {
             Log.e("Alphabet", "Error fetching Data", e)
+            null
+        }
+    }
+
+    suspend fun classifyImageAlphabet(imageFile: File): PredictAlphabetResponse? {
+        return try {
+            val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imageFile)
+            val body = MultipartBody.Part.createFormData("file", imageFile.name, requestFile)
+            apiService.classifyImageAlphabet(body)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error uploading image", e)
+            null
+        }
+    }
+
+    suspend fun classifyImageNumber(imageFile: File): PredictNumberResponse? {
+        return try {
+            val requestBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imageFile)
+            val body = MultipartBody.Part.createFormData("file", imageFile.name, requestBody)
+            apiService.classifyImageNumber(body)
+        } catch (e: Exception) {
+            Log.e(TAG, "Error uploading image", e)
             null
         }
     }
