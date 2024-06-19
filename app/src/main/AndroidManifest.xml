@@ -5,7 +5,6 @@
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
@@ -20,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AkuJuga"
         tools:targetApi="31">
+        <activity
+            android:name=".view.fragment.camera.CameraActivity"
+            android:exported="false" />
         <activity
             android:name=".view.guest.GuestActivity"
             android:exported="false" />
@@ -46,7 +48,7 @@
             android:exported="false" />
         <activity
             android:name=".view.main.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

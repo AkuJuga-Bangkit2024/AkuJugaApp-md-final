@@ -18,18 +18,19 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
+import com.example.akujuga.view.ViewModelFactory
 
 
 class CameraFragment : Fragment() {
+    private val viewModel by viewModels<CameraViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
+
     private var _binding: FragmentCameraBinding? = null
 
-    private var cameraSelector: CameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-    private var imageCapture: ImageCapture? = null
+    private var currentImageUri: Uri? = null
     private val binding get() = _binding!!
 
     private val requestPermissionLauncher =
@@ -55,12 +56,7 @@ class CameraFragment : Fragment() {
     ): View {
         _binding = FragmentCameraBinding.inflate(inflater, container, false)
 
-        binding.switchCamera.setOnClickListener {
-            cameraSelector =
-                if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) CameraSelector.DEFAULT_FRONT_CAMERA
-                else CameraSelector.DEFAULT_BACK_CAMERA
-            startCamera()
-        }
+        setupAction()
 
         if (!allPermissionsGranted()) {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
@@ -69,38 +65,88 @@ class CameraFragment : Fragment() {
         return binding.root
     }
 
-    private fun startCamera() {
-        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireActivity())
+    private fun setupAction() {
 
-        cameraProviderFuture.addListener({
-            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-            val preview = Preview.Builder()
-                .build()
-                .also {
-                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
-                }
+        binding.galleryButton.setOnClickListener { startGallery() }
 
-            imageCapture = ImageCapture.Builder().build()
+        binding.cameraButton.setOnClickListener { startCamera() }
 
-            try {
-                cameraProvider.unbindAll()
-                cameraProvider.bindToLifecycle(
-                    this,
-                    cameraSelector,
-                    preview,
-                    imageCapture
-                )
-
-            } catch (exc: Exception) {
-                Toast.makeText(
-                    requireContext(),
-                    "Gagal memunculkan kamera.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                Log.e("CameraFragemnt", "startCamera: ${exc.message}")
-            }
-        }, ContextCompat.getMainExecutor(requireContext()))
+        binding.analyzeButton.setOnClickListener { startAnalyze() }
     }
+
+    private fun startAnalyze() {
+        currentImageUri?.let { uri ->
+            val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
+            Log.d("Image Classification File", "showImage: ${imageFile.path}")
+            //TODO anaylize
+        }
+    }
+
+    private fun startCamera() {
+        currentImageUri = getImageUri(requireContext())
+        launcherIntentCamera.launch(currentImageUri)
+    }
+
+    private val launcherIntentCamera = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { isSuccess ->
+        if (isSuccess) {
+            showImage()
+        }
+    }
+    private fun startGallery() {
+        launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+    }
+
+    private val launcherGallery = registerForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            currentImageUri = uri
+            showImage()
+        } else {
+            Log.d("Photo Picker", "No media selected")
+        }
+    }
+
+    private fun showImage() {
+        currentImageUri?.let {
+            Log.d("Image URI", "showImage: $it")
+            binding.previewImageView.setImageURI(it)
+        }
+    }
+//    private fun startCamera() {
+//        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireActivity())
+//
+//        cameraProviderFuture.addListener({
+//            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
+//            val preview = Preview.Builder()
+//                .build()
+//                .also {
+//                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
+//                }
+//
+//            imageCapture = ImageCapture.Builder().build()
+//
+//            try {
+//                cameraProvider.unbindAll()
+//                cameraProvider.bindToLifecycle(
+//                    this,
+//                    cameraSelector,
+//                    preview,
+//                    imageCapture
+//                )
+//
+//            } catch (exc: Exception) {
+//                Toast.makeText(
+//                    requireContext(),
+//                    "Gagal memunculkan kamera.",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                Log.e("CameraFragemnt", "startCamera: ${exc.message}")
+//            }
+//        }, ContextCompat.getMainExecutor(requireContext()))
+//    }
 
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")
@@ -118,7 +164,7 @@ class CameraFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         hideSystemUI()
-        startCamera()
+//        startCamera()
         (activity as AppCompatActivity).supportActionBar?.hide()
     }
 

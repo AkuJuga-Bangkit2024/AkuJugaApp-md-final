@@ -45,4 +45,5 @@
     <string name="guest">Lanjut sebagai Guest</string>
     <string name="default_web_client_id">216160499070-ht7sif3jog1jdkdjn6i1busj5m5lfgpq.apps.googleusercontent.com</string>
     <string name="title_guest">Guest</string>
+    <string name="reset_button">reset kamera</string>
 </resources>
