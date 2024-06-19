@@ -6,6 +6,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.akujuga.data.UserRepository
 import com.example.akujuga.di.Injection
 import com.example.akujuga.view.feature.AlphabetViewModel
+import com.example.akujuga.view.feature.KamusViewModel
+import com.example.akujuga.view.feature.NumberViewModel
+import com.example.akujuga.view.fragment.camera.CameraViewModel
 import com.example.akujuga.view.login.LoginViewModel
 import com.example.akujuga.view.main.MainViewModel
 import com.example.akujuga.view.fragment.profile.ProfileViewModel
@@ -30,6 +33,15 @@ class ViewModelFactory(private val repository: UserRepository): ViewModelProvide
             }
             modelClass.isAssignableFrom(AlphabetViewModel::class.java) -> {
                 AlphabetViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(KamusViewModel::class.java) -> {
+                KamusViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(NumberViewModel::class.java) -> {
+                NumberViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(CameraViewModel::class.java) -> {
+                CameraViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

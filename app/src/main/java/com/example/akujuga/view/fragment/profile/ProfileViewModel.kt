@@ -23,7 +23,7 @@ class ProfileViewModel(private val repository: UserRepository) : ViewModel() {
     fun logout() {
         viewModelScope.launch {
             repository.logout()
-            _currentUser.postValue(null) // Update the current user to null on logout
+            _currentUser.postValue(null)
         }
     }
 }

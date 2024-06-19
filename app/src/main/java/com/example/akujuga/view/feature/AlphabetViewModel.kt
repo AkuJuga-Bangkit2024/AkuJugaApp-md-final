@@ -16,8 +16,6 @@ class AlphabetViewModel(private val repository: UserRepository) : ViewModel() {
     private val _alphaberResponse = MutableLiveData<AlphabetResponse>()
     val alphabetResponse: LiveData<AlphabetResponse> = _alphaberResponse
 
-    private val _predictingImageResponse = MutableLiveData<PredictAlphabetResponse>()
-    val predictingImageResponse: LiveData<PredictAlphabetResponse> = _predictingImageResponse
 
     fun getAlphabet() {
         viewModelScope.launch {
@@ -28,12 +26,5 @@ class AlphabetViewModel(private val repository: UserRepository) : ViewModel() {
         }
     }
 
-    fun classifyImageAlphabet(imageFile: File) {
-        viewModelScope.launch {
-            val response = repository.classifyImageAlphabet(imageFile)
-            response?.let {
-                _predictingImageResponse.value = it
-            }
-        }
-    }
+
 }

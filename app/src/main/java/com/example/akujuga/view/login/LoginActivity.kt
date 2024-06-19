@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.Toast
@@ -52,22 +53,26 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.signInButton.setOnClickListener {
+            showLoading(true)
             signInWithGoogle()
         }
 
         binding.guestLogin.setOnClickListener {
+            showLoading(true)
             signInAnonymously()
         }
     }
 
     private fun signInAnonymously() {
         viewModel.signInAnonymously(this) { user ->
+            showLoading(false)
             updateUIForGuest(user)
         }
     }
 
     private fun signInWithGoogle() {
         viewModel.signInWithGoogle(this) { user ->
+            showLoading(false)
             updateUI(user)
         }
     }
@@ -88,6 +93,10 @@ class LoginActivity : AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onStart() {

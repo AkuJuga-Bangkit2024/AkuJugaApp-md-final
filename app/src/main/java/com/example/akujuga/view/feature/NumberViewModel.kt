@@ -16,23 +16,11 @@ class NumberViewModel(private val repository: UserRepository): ViewModel() {
     private val _numberResponse = MutableLiveData<NumberResponse>()
     val numberResponse: LiveData<NumberResponse> = _numberResponse
 
-    private val _predictingImageResponse = MutableLiveData<PredictNumberResponse>()
-    val predictingImageResponse: LiveData<PredictNumberResponse> = _predictingImageResponse
-
-    fun fetchNumbers() {
+    fun getNumber() {
         viewModelScope.launch {
             val response = repository.getNumber()
             response?.let {
                 _numberResponse.value = it
-            }
-        }
-    }
-
-    fun classifyImageAlphabet(imageFile: File) {
-        viewModelScope.launch {
-            val response = repository.classifyImageNumber(imageFile)
-            response?.let {
-                _predictingImageResponse.value = it
             }
         }
     }

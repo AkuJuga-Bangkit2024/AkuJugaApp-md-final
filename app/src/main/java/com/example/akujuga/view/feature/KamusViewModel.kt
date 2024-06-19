@@ -14,7 +14,7 @@ class KamusViewModel(private val repository: UserRepository): ViewModel() {
     private val _dictionaryResponse = MutableLiveData<DictionaryResponse>()
     val dictionaryResponse: LiveData<DictionaryResponse> = _dictionaryResponse
 
-    fun fetchNumbers() {
+    fun getDictionary() {
         viewModelScope.launch {
             val response = repository.getDictionary()
             response?.let {

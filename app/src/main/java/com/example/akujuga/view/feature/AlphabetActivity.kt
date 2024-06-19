@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.akujuga.databinding.ActivityAlphabetBinding
 import com.example.akujuga.view.ViewModelFactory
+import com.example.akujuga.view.adapter.AlphabetListAdapter
 
 class AlphabetActivity : AppCompatActivity() {
     private val viewModel by viewModels<AlphabetViewModel> {
         ViewModelFactory.getInstance(this)
     }
     private lateinit var binding: ActivityAlphabetBinding
-    private lateinit var adapter: ItemListAdapter
+    private lateinit var adapter: AlphabetListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +25,12 @@ class AlphabetActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         setupAdapter()
+        setupList()
         setupSearch()
     }
 
     private fun setupAdapter() {
-        adapter = ItemListAdapter()
+        adapter = AlphabetListAdapter()
         binding.listItem.adapter = adapter
 
         val layoutManager = LinearLayoutManager(this)
@@ -36,6 +38,14 @@ class AlphabetActivity : AppCompatActivity() {
 
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.listItem.addItemDecoration(itemDecoration)
+    }
+
+    private fun setupList() {
+        viewModel.alphabetResponse.observe(this) {
+            it?.let {
+                adapter.submitList(it.images)
+            }
+        }
     }
 
     private fun setupSearch() {
