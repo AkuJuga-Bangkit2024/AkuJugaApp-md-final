@@ -79,8 +79,6 @@ class CameraFragment : Fragment() {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
             Log.d("Image Classification File", "showImage: ${imageFile.path}")
-            //TODO("logic camera detection")
-
             //dummydata
             binding.tvInnerText.text = getString(R.string.dummy_result)
         }
