@@ -13,18 +13,18 @@ import java.io.File
 
 class AlphabetViewModel(private val repository: UserRepository) : ViewModel() {
 
-    private val _alphaberResponse = MutableLiveData<AlphabetResponse>()
-    val alphabetResponse: LiveData<AlphabetResponse> = _alphaberResponse
-
-
-    fun getAlphabet() {
-        viewModelScope.launch {
-            val response = repository.getAlphabet()
-            response?.let {
-                _alphaberResponse.value = it
-            }
-        }
-    }
+//    private val _alphaberResponse = MutableLiveData<AlphabetResponse>()
+//    val alphabetResponse: LiveData<AlphabetResponse> = _alphaberResponse
+//
+//
+//    fun getAlphabet() {
+//        viewModelScope.launch {
+//            val response = repository.getAlphabet()
+//            response?.let {
+//                _alphaberResponse.value = it
+//            }
+//        }
+//    }
 
 
 }

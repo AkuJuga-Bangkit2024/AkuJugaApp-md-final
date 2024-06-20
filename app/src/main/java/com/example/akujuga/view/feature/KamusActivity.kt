@@ -6,17 +6,23 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.akujuga.R
 import com.example.akujuga.databinding.ActivityKamusBinding
 import com.example.akujuga.view.ViewModelFactory
 import com.example.akujuga.view.adapter.AlphabetListAdapter
 import com.example.akujuga.view.adapter.DictionaryListAdapter
+import com.example.akujuga.view.dummy.Dummy
+import com.example.akujuga.view.dummy.DummyDictionaryListAdapter
 
 class KamusActivity : AppCompatActivity() {
     private val viewModel by viewModels<KamusViewModel> {
         ViewModelFactory.getInstance(this)
     }
     private lateinit var binding: ActivityKamusBinding
-    private lateinit var adapter: DictionaryListAdapter
+//    private lateinit var adapter: DictionaryListAdapter
+    private lateinit var adapter: DummyDictionaryListAdapter
+
+    private val list = ArrayList<Dummy>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +31,15 @@ class KamusActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        list.addAll(getDummyList())
         setupAdapter()
         setupList()
         setupSearch()
     }
 
     private fun setupAdapter() {
-        adapter = DictionaryListAdapter()
+//        adapter = DictionaryListAdapter()
+        adapter = DummyDictionaryListAdapter(list)
         binding.listItem.adapter = adapter
 
         val layoutManager = LinearLayoutManager(this)
@@ -41,12 +49,23 @@ class KamusActivity : AppCompatActivity() {
         binding.listItem.addItemDecoration(itemDecoration)
     }
 
-    private fun setupList() {
-        viewModel.dictionaryResponse.observe(this) {
-            it?.let {
-                adapter.submitList(it.words)
-            }
+    private fun getDummyList(): ArrayList<Dummy> {
+        val dataPhoto = resources.obtainTypedArray(R.array.data_photo_dictionary)
+        val dataName = resources.getStringArray(R.array.data_dictionary)
+        val listItem = ArrayList<Dummy>()
+        for (i in dataName.indices) {
+            val hero = Dummy(dataName[i], dataPhoto.getResourceId(i, -1))
+            listItem.add(hero)
         }
+        return listItem
+    }
+
+    private fun setupList() {
+//        viewModel.dictionaryResponse.observe(this) {
+//            it?.let {
+//                adapter.submitList(it.words)
+//            }
+//        }
     }
 
     private fun setupSearch() {

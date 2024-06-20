@@ -13,15 +13,15 @@ import java.io.File
 
 class NumberViewModel(private val repository: UserRepository): ViewModel() {
 
-    private val _numberResponse = MutableLiveData<NumberResponse>()
-    val numberResponse: LiveData<NumberResponse> = _numberResponse
-
-    fun getNumber() {
-        viewModelScope.launch {
-            val response = repository.getNumber()
-            response?.let {
-                _numberResponse.value = it
-            }
-        }
-    }
+//    private val _numberResponse = MutableLiveData<NumberResponse>()
+//    val numberResponse: LiveData<NumberResponse> = _numberResponse
+//
+//    fun getNumber() {
+//        viewModelScope.launch {
+//            val response = repository.getNumber()
+//            response?.let {
+//                _numberResponse.value = it
+//            }
+//        }
+//    }
 }

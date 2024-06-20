@@ -32,64 +32,65 @@ import okhttp3.RequestBody
 import java.io.File
 
 class UserRepository private constructor(
-    private val auth: FirebaseAuth,
-    private val apiService: ApiService
+    private val auth: FirebaseAuth
+    // API belum bisa terdeploy
+//    private val apiService: ApiService
 ) {
 
-    suspend fun getNumber(): NumberResponse? {
-        return try {
-            withContext(Dispatchers.IO) {
-                apiService.getNumbers()
-            }
-        } catch (e: Exception) {
-            Log.e("Number", "Error fetching Data", e)
-            null
-        }
-    }
+//    suspend fun getNumber(): NumberResponse? {
+//        return try {
+//            withContext(Dispatchers.IO) {
+//                apiService.getNumbers()
+//            }
+//        } catch (e: Exception) {
+//            Log.e("Number", "Error fetching Data", e)
+//            null
+//        }
+//    }
 
-    suspend fun getAlphabet(): AlphabetResponse? {
-        return try {
-            withContext(Dispatchers.IO) {
-                apiService.getAlphabets()
-            }
-        } catch (e: Exception) {
-            Log.e("Alphabet", "Error fetching Data", e)
-            null
-        }
-    }
+//    suspend fun getAlphabet(): AlphabetResponse? {
+//        return try {
+//            withContext(Dispatchers.IO) {
+//                apiService.getAlphabets()
+//            }
+//        } catch (e: Exception) {
+//            Log.e("Alphabet", "Error fetching Data", e)
+//            null
+//        }
+//    }
 
-    suspend fun classifyImageAlphabet(imageFile: File): PredictAlphabetResponse? {
-        return try {
-            val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imageFile)
-            val body = MultipartBody.Part.createFormData("file", imageFile.name, requestFile)
-            apiService.classifyImageAlphabet(body)
-        } catch (e: Exception) {
-            Log.e(TAG, "Error uploading image", e)
-            null
-        }
-    }
-
-    suspend fun classifyImageNumber(imageFile: File): PredictNumberResponse? {
-        return try {
-            val requestBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imageFile)
-            val body = MultipartBody.Part.createFormData("file", imageFile.name, requestBody)
-            apiService.classifyImageNumber(body)
-        } catch (e: Exception) {
-            Log.e(TAG, "Error uploading image", e)
-            null
-        }
-    }
-
-    suspend fun getDictionary(): DictionaryResponse? {
-        return try {
-            withContext(Dispatchers.IO) {
-                apiService.getDictionary()
-            }
-        } catch (e: Exception) {
-            Log.e("Dictionary", "Error fetching Data", e)
-            null
-        }
-    }
+//    suspend fun classifyImageAlphabet(imageFile: File): PredictAlphabetResponse? {
+//        return try {
+//            val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imageFile)
+//            val body = MultipartBody.Part.createFormData("file", imageFile.name, requestFile)
+//            apiService.classifyImageAlphabet(body)
+//        } catch (e: Exception) {
+//            Log.e(TAG, "Error uploading image", e)
+//            null
+//        }
+//    }
+//
+//    suspend fun classifyImageNumber(imageFile: File): PredictNumberResponse? {
+//        return try {
+//            val requestBody = RequestBody.create("image/jpeg".toMediaTypeOrNull(), imageFile)
+//            val body = MultipartBody.Part.createFormData("file", imageFile.name, requestBody)
+//            apiService.classifyImageNumber(body)
+//        } catch (e: Exception) {
+//            Log.e(TAG, "Error uploading image", e)
+//            null
+//        }
+//    }
+//
+//    suspend fun getDictionary(): DictionaryResponse? {
+//        return try {
+//            withContext(Dispatchers.IO) {
+//                apiService.getDictionary()
+//            }
+//        } catch (e: Exception) {
+//            Log.e("Dictionary", "Error fetching Data", e)
+//            null
+//        }
+//    }
 
     fun getCurrentUser(): FirebaseUser? {
         return auth.currentUser
@@ -168,10 +169,11 @@ class UserRepository private constructor(
         private var instance: UserRepository? = null
         fun getInstance(
             auth: FirebaseAuth,
-            apiService: ApiService
+//            apiService: ApiService
         ): UserRepository =
             instance ?: synchronized(this) {
-                instance ?: UserRepository(auth, apiService)
+//                instance ?: UserRepository(auth, apiService)
+                instance ?: UserRepository(auth)
             }.also { instance = it }
     }
 }

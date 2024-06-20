@@ -46,4 +46,53 @@
     <string name="default_web_client_id">216160499070-ht7sif3jog1jdkdjn6i1busj5m5lfgpq.apps.googleusercontent.com</string>
     <string name="title_guest">Guest</string>
     <string name="reset_button">reset kamera</string>
+
+    <string-array name="data_name">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+    </string-array>
+
+    <string-array name="data_number">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="data_dictionary">
+        <item>Apa</item>
+        <item>Baik</item>
+        <item>Kamu</item>
+        <item>Terimakasih</item>
+        <item>Tidur</item>
+    </string-array>
+
+    <string-array name="data_photo">
+        <item>@drawable/a</item>
+        <item>@drawable/b</item>
+        <item>@drawable/c</item>
+        <item>@drawable/d</item>
+        <item>@drawable/e</item>
+    </string-array>
+
+    <string-array name="data_photo_number">
+        <item>@drawable/a0</item>
+        <item>@drawable/a1</item>
+        <item>@drawable/a2</item>
+        <item>@drawable/a3</item>
+        <item>@drawable/a4</item>
+    </string-array>
+
+    <string-array name="data_photo_dictionary">
+        <item>@drawable/apa</item>
+        <item>@drawable/baik</item>
+        <item>@drawable/kamu</item>
+        <item>@drawable/terimakasih</item>
+        <item>@drawable/tidur</item>
+    </string-array>
+
 </resources>

@@ -11,15 +11,15 @@ import kotlinx.coroutines.launch
 
 class KamusViewModel(private val repository: UserRepository): ViewModel() {
 
-    private val _dictionaryResponse = MutableLiveData<DictionaryResponse>()
-    val dictionaryResponse: LiveData<DictionaryResponse> = _dictionaryResponse
-
-    fun getDictionary() {
-        viewModelScope.launch {
-            val response = repository.getDictionary()
-            response?.let {
-                _dictionaryResponse.value = it
-            }
-        }
-    }
+//    private val _dictionaryResponse = MutableLiveData<DictionaryResponse>()
+//    val dictionaryResponse: LiveData<DictionaryResponse> = _dictionaryResponse
+//
+//    fun getDictionary() {
+//        viewModelScope.launch {
+//            val response = repository.getDictionary()
+//            response?.let {
+//                _dictionaryResponse.value = it
+//            }
+//        }
+//    }
 }

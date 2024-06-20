@@ -17,7 +17,7 @@ object ApiConfig {
             .addInterceptor(loggingInterceptor)
             .build()
         val retrofit = Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("")//API eror belum bisa terdeploy
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

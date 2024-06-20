@@ -12,28 +12,28 @@ import java.io.File
 
 class CameraViewModel(private val repository: UserRepository): ViewModel() {
 
-    private val _predictingImageNumber = MutableLiveData<PredictNumberResponse>()
-    val predictingImageNumber: LiveData<PredictNumberResponse> = _predictingImageNumber
-
-    private val _predictingImageAlphabet = MutableLiveData<PredictAlphabetResponse>()
-    val predictingImageAlphabet: LiveData<PredictAlphabetResponse> = _predictingImageAlphabet
-
-
-    fun classifyImageAlphabet(imageFile: File) {
-        viewModelScope.launch {
-            val response = repository.classifyImageAlphabet(imageFile)
-            response?.let {
-                _predictingImageAlphabet.value = it
-            }
-        }
-    }
-
-    fun classifyImageNumber(imageFile: File) {
-        viewModelScope.launch {
-            val response = repository.classifyImageNumber(imageFile)
-            response?.let {
-                _predictingImageNumber.value = it
-            }
-        }
-    }
+//    private val _predictingImageNumber = MutableLiveData<PredictNumberResponse>()
+//    val predictingImageNumber: LiveData<PredictNumberResponse> = _predictingImageNumber
+//
+//    private val _predictingImageAlphabet = MutableLiveData<PredictAlphabetResponse>()
+//    val predictingImageAlphabet: LiveData<PredictAlphabetResponse> = _predictingImageAlphabet
+//
+//
+//    fun classifyImageAlphabet(imageFile: File) {
+//        viewModelScope.launch {
+//            val response = repository.classifyImageAlphabet(imageFile)
+//            response?.let {
+//                _predictingImageAlphabet.value = it
+//            }
+//        }
+//    }
+//
+//    fun classifyImageNumber(imageFile: File) {
+//        viewModelScope.launch {
+//            val response = repository.classifyImageNumber(imageFile)
+//            response?.let {
+//                _predictingImageNumber.value = it
+//            }
+//        }
+//    }
 }
