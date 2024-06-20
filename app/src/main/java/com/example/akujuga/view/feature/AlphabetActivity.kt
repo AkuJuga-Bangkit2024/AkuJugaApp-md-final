@@ -1,7 +1,7 @@
 package com.example.akujuga.view.feature
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -10,14 +10,14 @@ import com.example.akujuga.R
 import com.example.akujuga.databinding.ActivityAlphabetBinding
 import com.example.akujuga.view.ViewModelFactory
 import com.example.akujuga.view.dummy.Dummy
-import com.example.akujuga.view.dummy.DummyAlphabetListAdapter
+import com.example.akujuga.view.dummy.DummyListAdapter
 
 class AlphabetActivity : AppCompatActivity() {
     private val viewModel by viewModels<AlphabetViewModel> {
         ViewModelFactory.getInstance(this)
     }
     private lateinit var binding: ActivityAlphabetBinding
-    private lateinit var adapter: DummyAlphabetListAdapter
+    private lateinit var adapter: DummyListAdapter
 
     private val list = ArrayList<Dummy>()
 
@@ -42,11 +42,12 @@ class AlphabetActivity : AppCompatActivity() {
             val hero = Dummy(dataName[i], dataPhoto.getResourceId(i, -1))
             listItem.add(hero)
         }
+        dataPhoto.recycle()
         return listItem
     }
 
     private fun setupAdapter() {
-        adapter = DummyAlphabetListAdapter(list)
+        adapter = DummyListAdapter(list)
         binding.listItem.adapter = adapter
 
         val layoutManager = LinearLayoutManager(this)
@@ -55,11 +56,6 @@ class AlphabetActivity : AppCompatActivity() {
         val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
         binding.listItem.addItemDecoration(itemDecoration)
 
-//        adapter.setOnItemClickCallback(object : DummyAlphabetListAdapter.OnItemClickCallback {
-//            override fun onItemClicked(data: Dummy) {
-//                Toast.makeText(this@AlphabetActivity, data.name, Toast.LENGTH_SHORT).show()
-//            }
-//        })
     }
 
     private fun setupList() {
@@ -76,10 +72,15 @@ class AlphabetActivity : AppCompatActivity() {
             searchView
                 .editText
                 .setOnEditorActionListener { textView, actionId, event ->
-                    searchBar.setText(searchView.text)
-                    searchView.hide()
-                    Toast.makeText(this@AlphabetActivity, searchView.text, Toast.LENGTH_SHORT).show()
-                    false
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        val query = searchView.text.toString()
+                        adapter.filter(query)
+                        searchBar.setText(query)
+                        searchView.hide()
+                        true
+                    } else {
+                        false
+                    }
                 }
         }
     }

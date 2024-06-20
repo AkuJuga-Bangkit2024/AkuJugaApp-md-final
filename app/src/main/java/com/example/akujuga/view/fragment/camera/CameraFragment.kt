@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import com.example.akujuga.R
 import com.example.akujuga.view.ViewModelFactory
 
 
@@ -78,7 +79,10 @@ class CameraFragment : Fragment() {
         currentImageUri?.let { uri ->
             val imageFile = uriToFile(uri, requireContext()).reduceFileImage()
             Log.d("Image Classification File", "showImage: ${imageFile.path}")
-            //TODO anaylize
+            //TODO("logic camera detection")
+
+            //dummydata
+            binding.tvInnerText.text = getString(R.string.dummy_result)
         }
     }
 
@@ -115,38 +119,6 @@ class CameraFragment : Fragment() {
             binding.previewImageView.setImageURI(it)
         }
     }
-//    private fun startCamera() {
-//        val cameraProviderFuture = ProcessCameraProvider.getInstance(requireActivity())
-//
-//        cameraProviderFuture.addListener({
-//            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
-//            val preview = Preview.Builder()
-//                .build()
-//                .also {
-//                    it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
-//                }
-//
-//            imageCapture = ImageCapture.Builder().build()
-//
-//            try {
-//                cameraProvider.unbindAll()
-//                cameraProvider.bindToLifecycle(
-//                    this,
-//                    cameraSelector,
-//                    preview,
-//                    imageCapture
-//                )
-//
-//            } catch (exc: Exception) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    "Gagal memunculkan kamera.",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                Log.e("CameraFragemnt", "startCamera: ${exc.message}")
-//            }
-//        }, ContextCompat.getMainExecutor(requireContext()))
-//    }
 
     private fun hideSystemUI() {
         @Suppress("DEPRECATION")
@@ -164,7 +136,6 @@ class CameraFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         hideSystemUI()
-//        startCamera()
         (activity as AppCompatActivity).supportActionBar?.hide()
     }
 

@@ -49,6 +49,7 @@
     <string name="alfabet">Alfabet</string>
     <string name="angka">Angka</string>
     <string name="deteksi_kamera">Deteksi Kamera</string>
+    <string name="dummy_result">Huruf A</string>
 
     <string-array name="data_name">
         <item>A</item>
@@ -56,6 +57,26 @@
         <item>C</item>
         <item>D</item>
         <item>E</item>
+        <item>F</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>J</item>
+        <item>K</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>Q</item>
+        <item>R</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>V</item>
+        <item>X</item>
+        <item>Y</item>
+        <item>Z</item>
     </string-array>
 
     <string-array name="data_number">
@@ -64,6 +85,11 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
     </string-array>
 
     <string-array name="data_dictionary">
@@ -80,6 +106,26 @@
         <item>@drawable/c</item>
         <item>@drawable/d</item>
         <item>@drawable/e</item>
+        <item>@drawable/f</item>
+        <item>@drawable/g</item>
+        <item>@drawable/h</item>
+        <item>@drawable/i</item>
+        <item>@drawable/j</item>
+        <item>@drawable/k</item>
+        <item>@drawable/l</item>
+        <item>@drawable/m</item>
+        <item>@drawable/n</item>
+        <item>@drawable/o</item>
+        <item>@drawable/p</item>
+        <item>@drawable/q</item>
+        <item>@drawable/r</item>
+        <item>@drawable/s</item>
+        <item>@drawable/t</item>
+        <item>@drawable/u</item>
+        <item>@drawable/v</item>
+        <item>@drawable/x</item>
+        <item>@drawable/y</item>
+        <item>@drawable/z</item>
     </string-array>
 
     <string-array name="data_photo_number">
@@ -88,6 +134,11 @@
         <item>@drawable/a2</item>
         <item>@drawable/a3</item>
         <item>@drawable/a4</item>
+        <item>@drawable/a5</item>
+        <item>@drawable/a6</item>
+        <item>@drawable/a7</item>
+        <item>@drawable/a8</item>
+        <item>@drawable/a9</item>
     </string-array>
 
     <string-array name="data_photo_dictionary">

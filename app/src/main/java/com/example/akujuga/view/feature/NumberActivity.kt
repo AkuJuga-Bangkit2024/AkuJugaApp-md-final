@@ -1,7 +1,7 @@
 package com.example.akujuga.view.feature
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -9,10 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.akujuga.R
 import com.example.akujuga.databinding.ActivityNumberBinding
 import com.example.akujuga.view.ViewModelFactory
-import com.example.akujuga.view.adapter.AlphabetListAdapter
-import com.example.akujuga.view.adapter.NumberListAdapter
 import com.example.akujuga.view.dummy.Dummy
-import com.example.akujuga.view.dummy.DummyNumberListAdapter
+import com.example.akujuga.view.dummy.DummyListAdapter
 
 class NumberActivity : AppCompatActivity() {
     private val viewModel by viewModels<NumberViewModel> {
@@ -20,7 +18,7 @@ class NumberActivity : AppCompatActivity() {
     }
     private lateinit var binding: ActivityNumberBinding
 //    private lateinit var adapter: NumberListAdapter
-    private lateinit var adapter: DummyNumberListAdapter
+private lateinit var adapter: DummyListAdapter
 
     private val list = ArrayList<Dummy>()
 
@@ -50,7 +48,7 @@ class NumberActivity : AppCompatActivity() {
 
     private fun setupAdapter() {
 //        adapter = NumberListAdapter()
-        adapter = DummyNumberListAdapter(list)
+        adapter = DummyListAdapter(list)
         binding.listItem.adapter = adapter
 
         val layoutManager = LinearLayoutManager(this)
@@ -69,17 +67,21 @@ class NumberActivity : AppCompatActivity() {
 //        viewModel.getNumber()
     }
 
-
     private fun setupSearch() {
         with(binding) {
             searchView.setupWithSearchBar(searchBar)
             searchView
                 .editText
                 .setOnEditorActionListener { textView, actionId, event ->
-                    searchBar.setText(searchView.text)
-                    searchView.hide()
-                    Toast.makeText(this@NumberActivity, searchView.text, Toast.LENGTH_SHORT).show()
-                    false
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        val query = searchView.text.toString()
+                        adapter.filter(query)
+                        searchBar.setText(query)
+                        searchView.hide()
+                        true
+                    } else {
+                        false
+                    }
                 }
         }
     }
