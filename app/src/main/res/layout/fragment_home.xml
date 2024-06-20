@@ -31,38 +31,43 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLogoText" />
 
-        <LinearLayout
-            android:id="@+id/llClick"
-            android:layout_width="wrap_content"
+        <ScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            android:padding="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivHome"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivHome">
+            app:layout_constraintEnd_toEndOf="parent">
 
-            <ImageView
-                android:id="@+id/ivAlphabet"
-                android:layout_width="wrap_content"
-                android:layout_height="115dp"
-                android:src="@drawable/imageone" />
+            <LinearLayout
+                android:id="@+id/llClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/ivNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="115dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/imagethree" />
+                <ImageView
+                    android:id="@+id/ivAlphabet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="115dp"
+                    android:src="@drawable/imageonefix" />
 
-            <ImageView
-                android:id="@+id/ivKamus"
-                android:layout_width="wrap_content"
-                android:layout_height="115dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/imagetwo" />
+                <ImageView
+                    android:id="@+id/ivNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/imagethree" />
 
-        </LinearLayout>
+                <ImageView
+                    android:id="@+id/ivKamus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="115dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/imagetwo" />
+
+            </LinearLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

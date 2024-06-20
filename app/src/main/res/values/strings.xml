@@ -16,8 +16,8 @@
     <string name="texAccount">Don’t have an account? Sign up</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
-    <string name="result">Result:</string>
-    <string name="analyze">Analyze</string>
+    <string name="result">Hasil:</string>
+    <string name="analyze">Analisis</string>
     <string name="email">Email</string>
     <string name="setting">Setting</string>
     <string name="account">Account</string>
@@ -46,6 +46,9 @@
     <string name="default_web_client_id">216160499070-ht7sif3jog1jdkdjn6i1busj5m5lfgpq.apps.googleusercontent.com</string>
     <string name="title_guest">Guest</string>
     <string name="reset_button">reset kamera</string>
+    <string name="alfabet">Alfabet</string>
+    <string name="angka">Angka</string>
+    <string name="deteksi_kamera">Deteksi Kamera</string>
 
     <string-array name="data_name">
         <item>A</item>
